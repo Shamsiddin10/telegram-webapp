@@ -16,42 +16,55 @@
 
         /* --- AUTH SYSTEM --- */
         #authOverlay { position: fixed; inset: 0; background: radial-gradient(circle at 50% 50%, #1e1b4b, #0f172a); z-index: 5000; display: flex; align-items: center; justify-content: center; padding: 20px; }
-        .auth-container { background: var(--card); padding: 40px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.1); width: 100%; max-width: 450px; text-align: center; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+        .auth-container { background: var(--card); padding: 30px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.1); width: 100%; max-width: 450px; text-align: center; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
         .tabs { display: flex; gap: 10px; margin-bottom: 25px; background: rgba(0,0,0,0.2); padding: 5px; border-radius: 15px; }
         .tab-btn { flex: 1; padding: 12px; border-radius: 12px; border: none; background: transparent; color: #94a3b8; cursor: pointer; font-weight: 600; transition: 0.3s; }
         .tab-btn.active { background: var(--primary); color: white; }
-        .input-box { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #334155; background: #334155; color: white; margin-bottom: 15px; outline: none; transition: 0.3s; }
-        .input-box:focus { border-color: var(--primary); }
+        .input-box { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #334155; background: #334155; color: white; margin-bottom: 15px; outline: none; transition: 0.3s; font-size: 16px; }
         .main-btn { width: 100%; padding: 16px; border-radius: 12px; border: none; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; font-weight: 700; cursor: pointer; transition: 0.3s; }
-        .main-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3); }
 
-        /* --- LAYOUT --- */
-        .layout { display: none; }
-        .sidebar { width: 280px; background: var(--sidebar); height: 100vh; position: fixed; padding: 30px 20px; border-right: 1px solid rgba(255,255,255,0.05); z-index: 1000; }
-        .content { margin-left: 280px; padding: 40px; min-height: 100vh; }
+        /* --- RESPONSIVE LAYOUT --- */
+        .layout { display: none; min-height: 100vh; }
+        
+        /* Sidebar PC */
+        .sidebar { width: 280px; background: var(--sidebar); height: 100vh; position: fixed; padding: 30px 20px; border-right: 1px solid rgba(255,255,255,0.05); z-index: 1000; transition: 0.3s; }
+        .content { margin-left: 280px; padding: 40px; min-height: 100vh; transition: 0.3s; }
+
+        /* Mobile Adjustments */
+        @media (max-width: 850px) {
+            .sidebar { width: 70px; padding: 20px 10px; }
+            .sidebar .logo, .sidebar .menu-item span { display: none; }
+            .sidebar .menu-item { justify-content: center; font-size: 20px; }
+            .content { margin-left: 70px; padding: 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar { width: 100%; height: 60px; bottom: 0; top: auto; display: flex; padding: 5px; border-right: none; border-top: 1px solid rgba(255,255,255,0.1); }
+            .content { margin-left: 0; padding: 15px; padding-bottom: 80px; }
+            .sidebar .menu-item { margin-bottom: 0; flex: 1; border-radius: 8px; }
+        }
+
         .logo { font-size: 22px; font-weight: 800; color: var(--primary); margin-bottom: 40px; letter-spacing: 1px; }
         .menu-item { padding: 14px 18px; border-radius: 12px; cursor: pointer; color: #64748b; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; transition: 0.2s; font-weight: 500; }
-        .menu-item:hover { background: rgba(255,255,255,0.03); color: white; }
         .menu-item.active { background: rgba(99, 102, 241, 0.1); color: var(--primary); }
 
         /* --- COMPONENTS --- */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin-top: 25px; }
-        .card { background: var(--card); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
-        .card:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 20px; }
+        .card { background: var(--card); padding: 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
         
-        /* Monitoring Table */
-        table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 15px; overflow: hidden; margin-top: 20px; }
-        th, td { padding: 18px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        th { background: rgba(255,255,255,0.03); color: var(--primary); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        /* Responsive Table */
+        .table-container { overflow-x: auto; border-radius: 15px; background: var(--card); margin-top: 20px; border: 1px solid rgba(255,255,255,0.05); }
+        table { width: 100%; border-collapse: collapse; min-width: 600px; }
+        th, td { padding: 15px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        th { background: rgba(255,255,255,0.03); color: var(--primary); font-size: 11px; text-transform: uppercase; }
+        
         .status-dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 5px; }
+        .quiz-option { padding: 14px; background: #334155; border-radius: 10px; margin-bottom: 8px; cursor: pointer; border: 2px solid transparent; }
+        .hidden { display: none !important; }
 
-        /* Test Styles */
-        .quiz-option { padding: 16px; background: #334155; border-radius: 12px; margin-bottom: 10px; cursor: pointer; border: 2px solid transparent; transition: 0.2s; }
-        .quiz-option.correct { border-color: var(--success); background: rgba(16, 185, 129, 0.1); }
-        .quiz-option.wrong { border-color: var(--accent); background: rgba(244, 63, 94, 0.1); }
-        .explanation { background: rgba(99, 102, 241, 0.1); padding: 15px; border-radius: 12px; margin-top: 15px; border-left: 4px solid var(--primary); display: none; line-height: 1.5; }
-
-        .hidden { display: none; }
+        /* Spin Animation for Update button */
+        .spinning { animation: spin 0.8s ease-in-out; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
@@ -81,25 +94,25 @@
 
 <div id="studentLayout" class="layout">
     <div class="sidebar">
-        <div class="logo">🚀 ZAMON AC</div>
-        <div class="menu-item active" onclick="showSec('sHome', this)">📚 Kurslarim</div>
-        <div class="menu-item" onclick="showSec('sTest', this)">✍️ Imtihonlar</div>
-        <div class="menu-item" onclick="showSec('sHW', this)">📤 Vazifalar</div>
-        <div class="menu-item" onclick="location.reload()" style="margin-top: 50px; color: var(--accent);">🚪 Chiqish</div>
+        <div class="logo">🚀 ZAMON</div>
+        <div class="menu-item active" onclick="showSec('sHome', this)">📚 <span>Kurslarim</span></div>
+        <div class="menu-item" onclick="showSec('sTest', this)">✍️ <span>Imtihonlar</span></div>
+        <div class="menu-item" onclick="showSec('sHW', this)">📤 <span>Vazifalar</span></div>
+        <div class="menu-item" onclick="location.reload()" style="color: var(--accent);">🚪 <span>Chiqish</span></div>
     </div>
     <div class="content">
         <div id="sHome" class="s-section active">
             <h1>Salom, <span id="spanName">O'quvchi</span>! 👋</h1>
-            <p style="color: #94a3b8; margin-bottom: 20px;">Sizning yo'nalishingiz: <strong id="spanSub" style="color: var(--primary);"></strong></p>
+            <p style="color: #94a3b8; font-size: 14px;">Yo'nalish: <strong id="spanSub" style="color: var(--primary);"></strong></p>
             <div class="grid" id="courseGrid"></div>
         </div>
         
         <div id="sTest" class="s-section hidden">
             <h2>Murakkab Testlar</h2>
-            <div id="quizContainer" class="card" style="margin-top: 20px; max-width: 700px;">
+            <div id="quizContainer" class="card" style="margin-top: 20px;">
                 <div id="quizContent">
-                    <p>Matematika bo'yicha darajangizni aniqlang.</p>
-                    <button class="main-btn" onclick="startQuiz()">Testni boshlash</button>
+                    <p>Fanda darajangizni aniqlang.</p>
+                    <button class="main-btn" style="margin-top: 15px;" onclick="startQuiz()">Testni boshlash</button>
                 </div>
             </div>
         </div>
@@ -107,7 +120,7 @@
         <div id="sHW" class="s-section hidden">
             <h2>Uy Vazifasini Yuborish</h2>
             <div class="card" style="margin-top: 20px;">
-                <textarea id="hwText" class="input-box" style="height: 200px;" placeholder="Yechimni shu yerga yozing..."></textarea>
+                <textarea id="hwText" class="input-box" style="height: 150px;" placeholder="Yechimni shu yerga yozing..."></textarea>
                 <button class="main-btn" onclick="submitHW()">Topshirish</button>
             </div>
         </div>
@@ -116,66 +129,58 @@
 
 <div id="teacherLayout" class="layout">
     <div class="sidebar">
-        <div class="logo" style="color: var(--secondary);">👑 USTOZ PANELI</div>
-        <div class="menu-item active" onclick="showSec('tStats', this)">📊 Statistika</div>
-        <div class="menu-item" onclick="showSec('tUsers', this)">👥 O'quvchilar</div>
-        <div class="menu-item" onclick="location.reload()" style="margin-top: 50px; color: var(--accent);">🚪 Chiqish</div>
+        <div class="logo" style="color: var(--secondary);">👑 USTOZ</div>
+        <div class="menu-item active" onclick="showSec('tStats', this)">📊 <span>Statistika</span></div>
+        <div class="menu-item" onclick="showSec('tUsers', this)">👥 <span>O'quvchilar</span></div>
+        <div class="menu-item" onclick="location.reload()" style="color: var(--accent);">🚪 <span>Chiqish</span></div>
     </div>
     <div class="content">
         <div id="tStats" class="t-section active">
             <h1>Akademik Holat</h1>
             <div class="grid">
                 <div class="card"><h3>Jami O'quvchilar</h3><h2 id="mTotal" style="color: var(--primary);">0</h2></div>
-                <div class="card"><h3>Yuborilgan Vazifalar</h3><h2 id="mHW" style="color: var(--secondary);">0</h2></div>
-                <div class="card"><h3>O'rtacha o'zlashtirish</h3><h2 style="color: var(--success);">92%</h2></div>
+                <div class="card"><h3>Vazifalar</h3><h2 id="mHW" style="color: var(--secondary);">0</h2></div>
+                <div class="card"><h3>O'rtacha</h3><h2 style="color: var(--success);">92%</h2></div>
             </div>
         </div>
 
         <div id="tUsers" class="t-section hidden">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
                 <h2>👥 O'quvchilar Monitoringi</h2>
-                <button onclick="updateMonitor()" class="main-btn" style="width: auto; padding: 10px 20px;">Yangilash</button>
+                <button id="updateBtn" onclick="updateMonitor(true)" class="main-btn" style="width: auto; padding: 10px 20px;">🔄 Yangilash</button>
             </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>O'quvchi</th>
-                        <th>Yo'nalish</th>
-                        <th>Natija</th>
-                        <th>Holat</th>
-                        <th>Oxirgi Faollik</th>
-                    </tr>
-                </thead>
-                <tbody id="monitorTableBody"></tbody>
-            </table>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>O'quvchi / Email</th>
+                            <th>Yo'nalish</th>
+                            <th>Natija</th>
+                            <th>Holat</th>
+                            <th>Oxirgi Faollik</th>
+                        </tr>
+                    </thead>
+                    <tbody id="monitorTableBody"></tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
 
-
-
 <script>
-    const fanlar = [
-        "Oliy Matematika", "Software Engineering", "English (C1/IELTS)", 
-        "Nazariy Fizika", "Molekulyar Biologiya", "Organik Kimyo", 
-        "Siyosiy Tarix", "Ona tili (Oliy)", "Rus tili (TORFL)", 
-        "UI/UX Design", "Arab tili", "Kritik Mantiq"
-    ];
-
+    const fanlar = ["Oliy Matematika", "Software Engineering", "English (C1/IELTS)", "Nazariy Fizika", "Molekulyar Biologiya", "Organik Kimyo", "Siyosiy Tarix", "Ona tili", "Rus tili", "UI/UX Design", "Arab tili", "Kritik Mantiq"];
     const mathQuiz = [
-        {q: "f(x) = 3x² - 4x + 5 funksiyaning hosilasini toping?", a: ["6x - 4", "3x - 4", "6x + 5", "x² - 4"], c: 0, e: "Hosiila qoidasiga ko'ra (xⁿ)' = nxⁿ⁻¹. (3x²)' = 6x va (-4x)' = -4."},
-        {q: "log₂32 + log₃27 yig'indisi nechaga teng?", a: ["5", "8", "15", "9"], c: 1, e: "log₂32 = 5 va log₃27 = 3. 5 + 3 = 8."},
-        {q: "Ehtimollik: 3 ta oq va 5 ta qora shar bor. Tasodifiy olingan shar oq bo'lish ehtimoli?", a: ["3/5", "3/8", "5/8", "1/2"], c: 1, e: "Jami sharlar 8 ta. Oqlar 3 ta. Javob: 3/8."}
+        {q: "f(x) = 3x² - 4x + 5 hosilasini toping?", a: ["6x - 4", "3x - 4", "6x + 5", "x² - 4"], c: 0, e: "(3x²)' = 6x, (-4x)' = -4."},
+        {q: "log₂32 + log₃27 nechaga teng?", a: ["5", "8", "15", "9"], c: 1, e: "5 + 3 = 8."},
+        {q: "3 ta oq va 5 ta qora shar ichidan oq shar olish ehtimoli?", a: ["3/5", "3/8", "5/8", "1/2"], c: 1, e: "Jami 8 ta, oqlar 3 ta."}
     ];
 
     let currentStudent = null;
 
-    // --- INITIALIZE ---
     window.onload = () => {
-        const sel = document.getElementById('regSubject');
-        sel.innerHTML = fanlar.map(f => `<option value="${f}">${f}</option>`).join('');
+        document.getElementById('regSubject').innerHTML = fanlar.map(f => `<option value="${f}">${f}</option>`).join('');
         document.getElementById('courseGrid').innerHTML = fanlar.map(f => `
-            <div class="card"><h3>${f}</h3><p style="font-size:12px; opacity:0.6; margin-top:10px;">Darslarni boshlash uchun bosing →</p></div>
+            <div class="card"><h3>${f}</h3><p style="font-size:12px; opacity:0.6; margin-top:5px;">Kursga kirish →</p></div>
         `).join('');
     };
 
@@ -186,81 +191,54 @@
         document.getElementById(type === 'student' ? 'tabS' : 'tabT').classList.add('active');
     }
 
-    // --- LOGIN SYSTEM ---
     function login(type) {
         if(type === 'student') {
             const name = document.getElementById('regName').value;
-            const sub = document.getElementById('regSubject').value;
             const email = document.getElementById('regEmail').value;
-            if(!name || !email) return alert("Ma'lumotlarni to'ldiring!");
+            const sub = document.getElementById('regSubject').value;
+            if(!name || !email) return alert("Email va ismni to'ldiring!");
 
-            currentStudent = {
-                id: Date.now(),
-                name: name,
-                email: email,
-                subject: sub,
-                score: 0,
-                hw: 0,
-                lastActive: new Date().toLocaleTimeString(),
-                online: true
-            };
-
+            currentStudent = { id: Date.now(), name, email, subject: sub, score: 0, hw: 0, lastActive: new Date().toLocaleTimeString(), online: true };
             let db = JSON.parse(localStorage.getItem('edu_db')) || [];
             db.push(currentStudent);
             localStorage.setItem('edu_db', JSON.stringify(db));
 
-            document.getElementById('authOverlay').style.display = 'none';
+            document.getElementById('authOverlay').classList.add('hidden');
             document.getElementById('studentLayout').style.display = 'block';
             document.getElementById('spanName').innerText = name;
             document.getElementById('spanSub').innerText = sub;
         } else {
             if(document.getElementById('tLogin').value === "admin" && document.getElementById('tPass').value === "123") {
-                document.getElementById('authOverlay').style.display = 'none';
+                document.getElementById('authOverlay').classList.add('hidden');
                 document.getElementById('teacherLayout').style.display = 'block';
                 updateMonitor();
             } else alert("Xato!");
         }
     }
 
-    // --- STUDENT ACTIONS ---
     function startQuiz() {
         let qIdx = 0;
         const container = document.getElementById('quizContent');
-        
         const renderQ = () => {
             const q = mathQuiz[qIdx];
             container.innerHTML = `
-                <h3 style="margin-bottom:20px;">${q.q}</h3>
+                <h3>${q.q}</h3>
                 ${q.a.map((opt, i) => `<div class="quiz-option" onclick="check(${i}, ${q.c})">${opt}</div>`).join('')}
-                <div id="expl" class="explanation"><strong>Tushuntirish:</strong> ${q.e}</div>
-                <button id="nextQ" class="main-btn" style="display:none; margin-top:15px;">Keyingisi</button>
+                <div id="expl" class="explanation hidden" style="background: rgba(99,102,241,0.1); padding:10px; border-radius:10px; margin-top:10px;">${q.e}</div>
+                <button id="nextQ" class="main-btn hidden" style="margin-top:10px;">Keyingisi</button>
             `;
         };
-
         window.check = (idx, correct) => {
             const opts = document.querySelectorAll('.quiz-option');
             opts.forEach(o => o.style.pointerEvents = 'none');
-            if(idx === correct) {
-                opts[idx].classList.add('correct');
-                currentStudent.score += 33;
-            } else {
-                opts[idx].classList.add('wrong');
-                opts[correct].classList.add('correct');
-            }
-            document.getElementById('expl').style.display = 'block';
+            if(idx === correct) { opts[idx].style.borderColor = 'var(--success)'; currentStudent.score += 33; }
+            else { opts[idx].style.borderColor = 'var(--accent)'; opts[correct].style.borderColor = 'var(--success)'; }
+            document.getElementById('expl').classList.remove('hidden');
             const btn = document.getElementById('nextQ');
-            btn.style.display = 'block';
-            btn.onclick = () => {
-                qIdx++;
-                if(qIdx < mathQuiz.length) renderQ();
-                else finishQuiz();
-            };
+            btn.classList.remove('hidden');
+            btn.onclick = () => { qIdx++; qIdx < mathQuiz.length ? renderQ() : finishQuiz(); };
         };
-
-        const finishQuiz = () => {
-            container.innerHTML = `<h3>Test yakunlandi!</h3><p>Natija: ${currentStudent.score} ball</p>`;
-            saveProgress();
-        };
+        const finishQuiz = () => { container.innerHTML = `<h3>Tayyor!</h3><p>Natija: ${currentStudent.score} ball</p>`; saveProgress(); };
         renderQ();
     }
 
@@ -275,26 +253,44 @@
     function saveProgress() {
         let db = JSON.parse(localStorage.getItem('edu_db')) || [];
         const idx = db.findIndex(s => s.id === currentStudent.id);
-        currentStudent.lastActive = new Date().toLocaleTimeString();
-        db[idx] = currentStudent;
-        localStorage.setItem('edu_db', JSON.stringify(db));
+        if(idx !== -1) {
+            currentStudent.lastActive = new Date().toLocaleTimeString();
+            db[idx] = currentStudent;
+            localStorage.setItem('edu_db', JSON.stringify(db));
+        }
     }
 
-    // --- TEACHER MONITORING ---
-    function updateMonitor() {
+    // --- UPDATED MONITOR FUNCTION ---
+    function updateMonitor(isManual = false) {
+        const btn = document.getElementById('updateBtn');
+        if(isManual) btn.classList.add('spinning'); // Animatsiya qo'shish
+
         const db = JSON.parse(localStorage.getItem('edu_db')) || [];
+        
+        // Statistikani yangilash
         document.getElementById('mTotal').innerText = db.length;
         document.getElementById('mHW').innerText = db.reduce((a, b) => a + b.hw, 0);
+        
+        // Jadvalni yangilash
+        const tableBody = document.getElementById('monitorTableBody');
+        if(db.length === 0) {
+            tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center; opacity:0.5;">Hozircha o'quvchilar yo'q</td></tr>`;
+        } else {
+            tableBody.innerHTML = db.map(s => `
+                <tr>
+                    <td><strong>${s.name}</strong><br><small style="color:var(--primary)">${s.email}</small></td>
+                    <td><small>${s.subject}</small></td>
+                    <td><strong>${s.score} ball</strong><br><small>${s.hw} ta vazifa</small></td>
+                    <td><span class="status-dot" style="background:${s.online ? '#10b981' : '#64748b'}"></span> ${s.online ? 'Online' : 'Offline'}</td>
+                    <td><small>${s.lastActive}</small></td>
+                </tr>
+            `).join('');
+        }
 
-        document.getElementById('monitorTableBody').innerHTML = db.map(s => `
-            <tr>
-                <td><strong>${s.name}</strong><br><small style="opacity:0.6">${s.email}</small></td>
-                <td><span style="color:var(--primary)">${s.subject}</span></td>
-                <td><strong>${s.score} ball</strong><br><small>${s.hw} ta vazifa</small></td>
-                <td><span class="status-dot" style="background:${s.online ? '#10b981' : '#64748b'}"></span> ${s.online ? 'Online' : 'Offline'}</td>
-                <td style="font-size:12px; opacity:0.7;">Bugun, ${s.lastActive}</td>
-            </tr>
-        `).join('');
+        // Animatsiyani to'xtatish
+        if(isManual) {
+            setTimeout(() => btn.classList.remove('spinning'), 800);
+        }
     }
 
     function showSec(id, btn) {
@@ -302,6 +298,7 @@
         document.getElementById(id).classList.remove('hidden');
         document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
         btn.classList.add('active');
+        if(id === 'tUsers' || id === 'tStats') updateMonitor();
     }
 </script>
 </body>
