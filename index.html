@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Zamon Academy | Full Curriculum</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6366f1; --secondary: #a855f7; --accent: #f43f5e;
+            --bg: #0b0f1a; --card-bg: rgba(30, 41, 59, 0.4); --text: #f8fafc;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
+        body { background: var(--bg); color: var(--text); overflow-x: hidden; min-height: 100vh; }
+
+        /* --- AUTH --- */
+        #authOverlay { position: fixed; inset: 0; background: radial-gradient(circle at 50% 50%, #1e1b4b, #0b0f1a); z-index: 3000; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(20px); }
+        .auth-card { background: rgba(255, 255, 255, 0.02); padding: 40px 30px; border-radius: 35px; border: 1px solid rgba(255, 255, 255, 0.1); width: 90%; max-width: 400px; text-align: center; }
+        .input-box { width: 100%; padding: 16px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.3); color: white; margin-bottom: 12px; outline: none; }
+        .auth-btn { width: 100%; padding: 16px; border-radius: 14px; border: none; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; font-weight: 800; cursor: pointer; transition: 0.3s; }
+        .auth-btn:hover { opacity: 0.9; transform: scale(1.02); }
+
+        /* --- NAVIGATION --- */
+        .sidebar { width: 280px; background: #0d111c; height: 100vh; position: fixed; border-right: 1px solid rgba(255,255,255,0.05); padding: 30px 20px; z-index: 1000; }
+        .main-content { margin-left: 280px; width: calc(100% - 280px); transition: 0.3s; }
+        .menu-item { padding: 14px 18px; border-radius: 15px; cursor: pointer; color: #94a3b8; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; transition: 0.3s; }
+        .menu-item.active { background: rgba(99, 102, 241, 0.1); color: white; }
+
+        .mobile-nav { display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #0d111c; border-top: 1px solid rgba(255,255,255,0.1); padding: 10px 5px; justify-content: space-around; z-index: 2000; }
+        .nav-tab { display: flex; flex-direction: column; align-items: center; color: #94a3b8; font-size: 10px; cursor: pointer; }
+        .nav-tab.active { color: var(--primary); }
+
+        /* --- UI ELEMENTS --- */
+        .section { display: none; padding: 40px; animation: fadeIn 0.4s ease; }
+        .section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; }
+        .course-card { background: var(--card-bg); padding: 30px; border-radius: 25px; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; cursor: pointer; position: relative; overflow: hidden; }
+        .course-card:hover { transform: translateY(-5px); border-color: var(--primary); background: rgba(30, 41, 59, 0.6); }
+        
+        .lesson-card { background: rgba(255,255,255,0.02); padding: 20px; border-radius: 18px; margin-bottom: 15px; border-left: 4px solid var(--primary); display: flex; justify-content: space-between; align-items: center; }
+        .profile-header { background: linear-gradient(135deg, var(--primary), var(--secondary)); padding: 40px; border-radius: 30px; margin-bottom: 30px; text-align: center; }
+
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 20px; background: #000; margin-bottom: 20px; border: 1px solid rgba(255,255,255,0.1); }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+        @media (max-width: 992px) {
+            .sidebar { display: none; }
+            .main-content { margin-left: 0; width: 100%; padding-bottom: 80px; }
+            .mobile-nav { display: flex; }
+            .section { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="authOverlay">
+    <div class="auth-card" id="loginBox">
+        <h2 style="color: var(--primary); margin-bottom: 20px;">KIRISH</h2>
+        <input type="text" id="logUser" class="input-box" placeholder="Login">
+        <input type="password" id="logPass" class="input-box" placeholder="Parol">
+        <button class="auth-btn" onclick="login()">Kirish</button>
+        <p onclick="toggleAuth(false)" style="margin-top: 15px; cursor:pointer; color: #94a3b8;">Ro'yxatdan o'tish</p>
+    </div>
+    <div class="auth-card" id="regBox" style="display: none;">
+        <h2 style="color: var(--secondary); margin-bottom: 20px;">REGISTRATSIYA</h2>
+        <input type="text" id="regUser" class="input-box" placeholder="Ism">
+        <input type="password" id="regPass" class="input-box" placeholder="Parol">
+        <button class="auth-btn" style="background: var(--secondary)" onclick="register()">Yaratish</button>
+        <p onclick="toggleAuth(true)" style="margin-top: 15px; cursor:pointer; color: #94a3b8;">Kirishga qaytish</p>
+    </div>
+</div>
+
+<div id="app" style="display: none;">
+    <div class="sidebar">
+        <h2 style="color: var(--primary); margin-bottom: 30px; letter-spacing: -1px;">ZAMON ACADEMY</h2>
+        <div class="menu-item active" onclick="showSection('home', this)">📚 Kurslar</div>
+        <div class="menu-item" onclick="showSection('profile', this)">👤 Profilim</div>
+        <div id="adminLink" class="menu-item" style="display:none; color: #fbbf24;" onclick="showSection('adminPanel', this)">🛡 Monitoring</div>
+        <div class="menu-item" onclick="location.reload()" style="margin-top: 50px; color: var(--accent);">🚪 Chiqish</div>
+    </div>
+
+    <div class="mobile-nav">
+        <div class="nav-tab active" onclick="showSection('home', this)"><span>📚</span> Kurslar</div>
+        <div class="nav-tab" onclick="showSection('profile', this)"><span>👤</span> Profil</div>
+        <div class="nav-tab" onclick="location.reload()"><span>🚪</span> Chiqish</div>
+    </div>
+
+    <div class="main-content">
+        <div id="home" class="section active">
+            <h2 style="margin-bottom: 25px;">O'quv kurslari</h2>
+            <div class="grid" id="courseGrid"></div>
+        </div>
+
+        <div id="lessonView" class="section">
+            <button onclick="showSection('home')" style="background:none; border:none; color:var(--primary); cursor:pointer; margin-bottom:20px; font-weight: 600;">← Kurslarga qaytish</button>
+            <h2 id="currentFanTitle" style="margin-bottom: 20px;">Fan nomi</h2>
+            <div id="videoPlayerArea" style="display: none;">
+                <div class="video-container">
+                    <iframe id="mainIframe" src="" allowfullscreen></iframe>
+                </div>
+                <h3 id="currentLessonTitle" style="margin-bottom: 30px;">Dars sarlavhasi</h3>
+            </div>
+            <div id="lessonsList"></div>
+        </div>
+
+        <div id="profile" class="section">
+            <div class="profile-header">
+                <h2 id="profName">...</h2>
+                <p id="profRole">Talaba</p>
+            </div>
+            <div class="course-card">
+                <h3>Sizning natijalaringiz</h3>
+                <p id="statTests" style="margin-top:10px; font-size: 1.2rem;">Yechilgan testlar: 0 ta</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const fanlar = [
+        { id: 'math', title: 'Matematika', color: '#f59e0b', lessons: [{t:'Sonli ifodalar', v:'https://www.youtube.com/embed/n_U_LclA0zI'}, {t:'Tenglamalar', v:'https://www.youtube.com/embed/9N8H6zF7fAs'}, {t:'Mavzu testi', isTest:true}] },
+        { id: 'it', title: 'Frontend (HTML/CSS)', color: '#0ea5e9', lessons: [{t:'HTML kirish', v:'https://www.youtube.com/embed/S9673pT5z7A'}, {t:'CSS asoslari', v:'https://www.youtube.com/embed/w7vYOnuXU98'}, {t:'Amaliy test', isTest:true}] },
+        { id: 'eng', title: 'Ingliz tili', color: '#8b5cf6', lessons: [{t:'Present Simple', v:'https://www.youtube.com/embed/7X8mF9Yc7L0'}, {t:'Grammar Test', isTest:true}] },
+        { id: 'phys', title: 'Fizika', color: '#ef4444', lessons: [{t:'Kinematika', v:'https://www.youtube.com/embed/p9I23f_fI6c'}] },
+        { id: 'bio', title: 'Biologiya', color: '#10b981', lessons: [{t:'Hujayra', v:'https://www.youtube.com/embed/FfhjXn08X7Y'}] },
+        { id: 'chem', title: 'Kimyo', color: '#ec4899', lessons: [{t:'Davriy jadval', v:'https://www.youtube.com/embed/rzX0S9p_648'}] },
+        { id: 'hist', title: 'Tarix', color: '#78350f', lessons: [{t:'Qadimgi dunyo', v:'https://www.youtube.com/embed/p9I23f_fI6c'}] },
+        { id: 'uzb', title: 'O\'zbek tili', color: '#06b6d4', lessons: [{t:'Fonetika', v:'https://www.youtube.com/embed/7X8mF9Yc7L0'}] },
+        { id: 'rus', title: 'Rus tili', color: '#3b82f6', lessons: [{t:'Алфавит', v:'https://www.youtube.com/embed/pE_iC2S7_X8'}] },
+        { id: 'des', title: 'Grafik Dizayn', color: '#f43f5e', lessons: [{t:'Photoshop 1', v:'https://www.youtube.com/embed/S9673pT5z7A'}] },
+        { id: 'ara', title: 'Arab tili', color: '#14532d', lessons: [{t:'Harflar', v:'https://www.youtube.com/embed/rzX0S9p_648'}] },
+        { id: 'log', title: 'Mantiq', color: '#64748b', lessons: [{t:'IQ Test', isTest:true}] }
+    ];
+
+    let currentUser = null;
+
+    function toggleAuth(isLogin) {
+        document.getElementById('loginBox').style.display = isLogin ? 'block' : 'none';
+        document.getElementById('regBox').style.display = isLogin ? 'none' : 'block';
+    }
+
+    function register() {
+        const u = document.getElementById('regUser').value;
+        const p = document.getElementById('regPass').value;
+        if(!u || !p) return alert("To'ldiring!");
+        let users = JSON.parse(localStorage.getItem('z_users') || '[]');
+        users.push({ u, p, role: 'student', tests: 0 });
+        localStorage.setItem('z_users', JSON.stringify(users));
+        alert("Siz muvaffaqiyatli ro'yxatdan o'tdingiz!"); 
+        toggleAuth(true);
+    }
+
+    function login() {
+        const u = document.getElementById('logUser').value;
+        const p = document.getElementById('logPass').value;
+        let users = JSON.parse(localStorage.getItem('z_users') || '[]');
+        let user = (u==='admin' && p==='777') ? {u:'Admin', role:'admin'} : users.find(x=>x.u===u && x.p===p);
+        
+        if(user) {
+            currentUser = user;
+            document.getElementById('authOverlay').style.display = 'none';
+            document.getElementById('app').style.display = 'block';
+            document.getElementById('profName').innerText = user.u;
+            renderCourses();
+        } else alert("Login yoki parol xato!");
+    }
+
+    function renderCourses() {
+        const grid = document.getElementById('courseGrid');
+        grid.innerHTML = fanlar.map(f => `
+            <div class="course-card" onclick="openFan('${f.id}')">
+                <div style="width: 40px; height: 4px; background: ${f.color}; border-radius: 2px; margin-bottom: 15px;"></div>
+                <h3>${f.title}</h3>
+                <p style="margin-top:8px; opacity:0.6; font-size:13px;">${f.lessons.length} dars mavjud</p>
+            </div>
+        `).join('');
+    }
+
+    function openFan(id) {
+        const fan = fanlar.find(x => x.id === id);
+        showSection('lessonView');
+        document.getElementById('currentFanTitle').innerText = fan.title;
+        document.getElementById('videoPlayerArea').style.display = 'none';
+        
+        const list = document.getElementById('lessonsList');
+        list.innerHTML = fan.lessons.map((l, idx) => `
+            <div class="lesson-card">
+                <div>
+                    <span style="opacity:0.5; margin-right:10px;">0${idx+1}</span>
+                    <strong>${l.t}</strong>
+                </div>
+                ${l.isTest ? 
+                    `<button onclick="takeTest()" style="background:var(--accent); color:white; border:none; padding:8px 15px; border-radius:10px; cursor:pointer;">Test</button>` : 
+                    `<button onclick="playVideo('${l.v}', '${l.t}')" style="background:var(--primary); color:white; border:none; padding:8px 15px; border-radius:10px; cursor:pointer;">Ko'rish</button>`
+                }
+            </div>
+        `).join('');
+    }
+
+    function playVideo(url, title) {
+        document.getElementById('videoPlayerArea').style.display = 'block';
+        document.getElementById('mainIframe').src = url;
+        document.getElementById('currentLessonTitle').innerText = title;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function takeTest() {
+        let ok = confirm("Testni boshlaysizmi?");
+        if(ok) {
+            alert("Siz 5 ta savoldan 4 tasiga to'g'ri javob berdingiz!");
+            currentUser.tests = (currentUser.tests || 0) + 1;
+            document.getElementById('statTests').innerText = `Yechilgan testlar: ${currentUser.tests} ta`;
+        }
+    }
+
+    function showSection(id, el) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        document.querySelectorAll('.menu-item, .nav-tab').forEach(m => m.classList.remove('active'));
+        if(el) el.classList.add('active');
+    }
+</script>
+</body>
+</html>
