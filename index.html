@@ -1,305 +1,665 @@
 <!DOCTYPE html>
-<html lang="uz">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zamon Academy | Pro LMS</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #6366f1; --secondary: #a855f7; --accent: #f43f5e;
-            --success: #10b981; --bg: #0f172a; --card: #1e293b; --sidebar: #020617; --text: #f8fafc;
-        }
+<!-- saved from url=(0058)file:///C:/Users/Asliddin/Downloads/oquv-markaz%20(1).html -->
+<html lang="uz"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background: var(--bg); color: var(--text); overflow-x: hidden; }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ilm Markazi — O'quv Markaz</title>
+<link href="./Ilm Markazi — O&#39;quv Markaz_files/css2" rel="stylesheet">
+<link rel="stylesheet" href="./css/main.css">
+<style>
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --dark: #0D0D0D;
+    --dark2: #161616;
+    --dark3: #1E1E1E;
+    --white: #F5F2EC;
+    --muted: #888;
+    --border: rgba(201,168,76,0.2);
+    --green: #4CAF50;
+    --red: #e74c3c;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--dark); color: var(--white); font-family: 'DM Sans', sans-serif; font-weight: 300; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; opacity: 0.4; }
 
-        /* --- AUTH SYSTEM --- */
-        #authOverlay { position: fixed; inset: 0; background: radial-gradient(circle at 50% 50%, #1e1b4b, #0f172a); z-index: 5000; display: flex; align-items: center; justify-content: center; padding: 20px; }
-        .auth-container { background: var(--card); padding: 30px; border-radius: 30px; border: 1px solid rgba(255, 255, 255, 0.1); width: 100%; max-width: 450px; text-align: center; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
-        .tabs { display: flex; gap: 10px; margin-bottom: 25px; background: rgba(0,0,0,0.2); padding: 5px; border-radius: 15px; }
-        .tab-btn { flex: 1; padding: 12px; border-radius: 12px; border: none; background: transparent; color: #94a3b8; cursor: pointer; font-weight: 600; transition: 0.3s; }
-        .tab-btn.active { background: var(--primary); color: white; }
-        .input-box { width: 100%; padding: 14px; border-radius: 12px; border: 1px solid #334155; background: #334155; color: white; margin-bottom: 15px; outline: none; transition: 0.3s; font-size: 16px; }
-        .main-btn { width: 100%; padding: 16px; border-radius: 12px; border: none; background: linear-gradient(135deg, var(--primary), var(--secondary)); color: white; font-weight: 700; cursor: pointer; transition: 0.3s; }
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem; background: rgba(13,13,13,0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+  .logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 900; letter-spacing: -1px; color: var(--gold); }
+  .logo span { color: var(--white); }
+  nav ul { list-style: none; display: flex; gap: 2.5rem; }
+  nav ul a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: color 0.3s; }
+  nav ul a:hover { color: var(--gold); }
+  .nav-right { display: flex; gap: 1rem; align-items: center; }
+  .nav-btn { background: var(--gold); color: var(--dark); padding: 0.6rem 1.5rem; border: none; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 0.9rem; cursor: pointer; transition: background 0.3s; }
+  .nav-btn:hover { background: var(--gold-light); }
+  .admin-link { background: transparent; border: 1px solid var(--border); color: var(--muted); padding: 0.6rem 1.2rem; font-size: 0.85rem; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.3s; }
+  .admin-link:hover { border-color: var(--gold); color: var(--gold); }
 
-        /* --- RESPONSIVE LAYOUT --- */
-        .layout { display: none; min-height: 100vh; }
-        
-        /* Sidebar PC */
-        .sidebar { width: 280px; background: var(--sidebar); height: 100vh; position: fixed; padding: 30px 20px; border-right: 1px solid rgba(255,255,255,0.05); z-index: 1000; transition: 0.3s; }
-        .content { margin-left: 280px; padding: 40px; min-height: 100vh; transition: 0.3s; }
+  .hero { min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; padding: 0 4rem; padding-top: 5rem; position: relative; overflow: hidden; }
+  .hero::after { content: ''; position: absolute; right: -10%; top: 50%; transform: translateY(-50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(201,168,76,0.12) 0%, transparent 70%); border-radius: 50%; pointer-events: none; }
+  .hero-left { padding-right: 4rem; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; border: 1px solid var(--border); padding: 0.4rem 1rem; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 2rem; animation: fadeUp 0.8s ease forwards; }
+  .hero-badge::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.8)} }
+  h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem,6vw,5.5rem); line-height: 1.05; font-weight: 900; margin-bottom: 1.5rem; animation: fadeUp 0.8s ease 0.1s both; }
+  h1 em { font-style: normal; color: var(--gold); display: block; }
+  .hero-desc { color: var(--muted); font-size: 1.05rem; line-height: 1.8; max-width: 440px; margin-bottom: 2.5rem; animation: fadeUp 0.8s ease 0.2s both; }
+  .hero-btns { display: flex; gap: 1rem; animation: fadeUp 0.8s ease 0.3s both; }
+  .btn-primary { background: var(--gold); color: var(--dark); padding: 1rem 2.5rem; border: none; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 1rem; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-ghost { background: transparent; color: var(--white); padding: 1rem 2.5rem; border: 1px solid rgba(255,255,255,0.2); font-family: 'DM Sans', sans-serif; font-size: 1rem; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-right { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; animation: fadeUp 0.8s ease 0.4s both; }
+  .stat-card { background: var(--dark2); border: 1px solid var(--border); padding: 2rem; transition: border-color 0.3s, transform 0.3s; }
+  .stat-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .stat-card:nth-child(2){margin-top:2rem} .stat-card:nth-child(4){margin-top:-2rem}
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900; color: var(--gold); line-height: 1; }
+  .stat-label { color: var(--muted); font-size: 0.85rem; margin-top: 0.5rem; }
+  .stat-icon { font-size: 1.5rem; margin-bottom: 1rem; }
+  .divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 0 4rem; }
+  section { padding: 7rem 4rem; }
+  .section-label { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem,4vw,3.5rem); font-weight: 700; line-height: 1.15; margin-bottom: 1.5rem; }
+  .section-desc { color: var(--muted); font-size: 1rem; line-height: 1.8; max-width: 500px; }
+  .courses-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 4rem; }
+  .course-card { background: var(--dark2); border: 1px solid var(--border); padding: 2.5rem; position: relative; overflow: hidden; transition: all 0.4s; cursor: pointer; }
+  .course-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: var(--gold); transform: scaleX(0); transition: transform 0.4s; }
+  .course-card:hover { border-color: var(--gold); transform: translateY(-6px); }
+  .course-card:hover::before { transform: scaleX(1); }
+  .course-icon { font-size: 2.5rem; margin-bottom: 1.5rem; }
+  .course-title { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.75rem; }
+  .course-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.5rem; }
+  .course-meta { display: flex; gap: 1.5rem; font-size: 0.8rem; color: var(--muted); border-top: 1px solid var(--border); padding-top: 1.2rem; }
+  .course-badge { position: absolute; top: 1.5rem; right: 1.5rem; background: var(--gold); color: var(--dark); font-size: 0.7rem; font-weight: 500; padding: 0.3rem 0.7rem; letter-spacing: 1px; text-transform: uppercase; }
+  #about { background: var(--dark2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .features-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .features-list { display: flex; flex-direction: column; gap: 2rem; margin-top: 3rem; }
+  .feature-item { display: flex; gap: 1.5rem; align-items: flex-start; padding: 1.5rem; border: 1px solid transparent; transition: all 0.3s; }
+  .feature-item:hover { border-color: var(--border); background: var(--dark3); }
+  .feature-icon { font-size: 1.8rem; flex-shrink: 0; width: 3rem; text-align: center; }
+  .feature-content h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.4rem; }
+  .feature-content p { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+  .big-quote { font-family: 'Playfair Display', serif; font-size: clamp(2rem,3.5vw,3rem); font-weight: 700; line-height: 1.3; }
+  .big-quote em { font-style: italic; color: var(--gold); }
+  .quote-attr { margin-top: 2rem; color: var(--muted); font-size: 0.85rem; letter-spacing: 1px; display: flex; align-items: center; gap: 1rem; }
+  .quote-attr::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); }
+  .teachers-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-top: 4rem; }
+  .teacher-card { border: 1px solid var(--border); padding: 2rem; text-align: center; transition: all 0.3s; background: var(--dark2); }
+  .teacher-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+  .teacher-avatar { width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem; background: linear-gradient(135deg, var(--dark3), var(--dark2)); border: 2px solid var(--border); }
+  .teacher-name { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 0.3rem; }
+  .teacher-subject { color: var(--gold); font-size: 0.8rem; margin-bottom: 0.5rem; }
+  .teacher-exp { color: var(--muted); font-size: 0.8rem; }
+  .testimonials-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; margin-top: 4rem; }
+  .testimonial-card { background: var(--dark2); border: 1px solid var(--border); padding: 2.5rem; position: relative; transition: border-color 0.3s; }
+  .testimonial-card:hover { border-color: var(--gold); }
+  .testimonial-card::before { content: '"'; font-family: 'Playfair Display', serif; font-size: 5rem; color: var(--gold); opacity: 0.2; position: absolute; top: 1rem; left: 1.5rem; line-height: 1; }
+  .testimonial-text { color: var(--white); font-size: 0.95rem; line-height: 1.8; margin-bottom: 2rem; }
+  .testimonial-author { display: flex; align-items: center; gap: 1rem; border-top: 1px solid var(--border); padding-top: 1.5rem; }
+  .author-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--dark3); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+  .author-name { font-weight: 500; font-size: 0.9rem; }
+  .author-course { color: var(--muted); font-size: 0.8rem; }
+  .stars { color: var(--gold); margin-bottom: 1rem; font-size: 0.9rem; }
+  #contact { background: var(--dark2); border-top: 1px solid var(--border); text-align: center; }
+  .cta-box { max-width: 700px; margin: 0 auto; }
+  .cta-form { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 3rem; }
+  .form-input { background: var(--dark); border: 1px solid var(--border); color: var(--white); padding: 1rem 1.5rem; font-family: 'DM Sans', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.3s; width: 100%; }
+  .form-input:focus { border-color: var(--gold); }
+  .form-input::placeholder { color: var(--muted); }
+  .form-full { grid-column: 1 / -1; }
+  .form-submit { grid-column: 1/-1; background: var(--gold); color: var(--dark); padding: 1.1rem; border: none; font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 1rem; cursor: pointer; transition: all 0.3s; }
+  .form-submit:hover { background: var(--gold-light); transform: translateY(-2px); }
+  footer { padding: 3rem 4rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  .footer-copy { color: var(--muted); font-size: 0.85rem; }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a { color: var(--muted); font-size: 0.85rem; text-decoration: none; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--gold); }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+  .animate { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .animate.visible { opacity: 1; transform: translateY(0); }
 
-        /* Mobile Adjustments */
-        @media (max-width: 850px) {
-            .sidebar { width: 70px; padding: 20px 10px; }
-            .sidebar .logo, .sidebar .menu-item span { display: none; }
-            .sidebar .menu-item { justify-content: center; font-size: 20px; }
-            .content { margin-left: 70px; padding: 20px; }
-        }
+  /* MODAL */
+  .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 1000; justify-content: center; align-items: center; backdrop-filter: blur(8px); }
+  .modal-overlay.active { display: flex; }
+  .register-modal { background: var(--dark2); border: 1px solid var(--border); width: 90%; max-width: 580px; padding: 3rem; position: relative; animation: fadeUp 0.4s ease; max-height: 90vh; overflow-y: auto; }
+  .admin-login-modal { background: var(--dark2); border: 1px solid var(--border); width: 90%; max-width: 420px; padding: 3rem; position: relative; animation: fadeUp 0.4s ease; }
+  .modal-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; color: var(--muted); font-size: 1.5rem; cursor: pointer; transition: color 0.3s; }
+  .modal-close:hover { color: var(--gold); }
+  .modal-title { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .modal-sub { color: var(--muted); font-size: 0.9rem; margin-bottom: 2rem; }
+  .reg-form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .success-msg { display: none; text-align: center; padding: 2rem 0; }
+  .success-msg .s-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .success-msg h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 0.5rem; }
+  .success-msg p { color: var(--muted); }
+  .admin-err { color: var(--red); font-size: 0.85rem; display: none; margin-top: 0.3rem; }
 
-        @media (max-width: 480px) {
-            .sidebar { width: 100%; height: 60px; bottom: 0; top: auto; display: flex; padding: 5px; border-right: none; border-top: 1px solid rgba(255,255,255,0.1); }
-            .content { margin-left: 0; padding: 15px; padding-bottom: 80px; }
-            .sidebar .menu-item { margin-bottom: 0; flex: 1; border-radius: 8px; }
-        }
+  /* ADMIN PANEL */
+  #admin-panel { display: none; position: fixed; inset: 0; background: var(--dark); z-index: 2000; overflow-y: auto; }
+  .admin-nav { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; background: var(--dark2); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
+  .admin-badge { background: var(--gold); color: var(--dark); font-size: 0.7rem; padding: 0.2rem 0.6rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; margin-left: 0.5rem; }
+  .admin-logout { background: transparent; border: 1px solid var(--border); color: var(--muted); padding: 0.5rem 1rem; font-size: 0.85rem; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.3s; }
+  .admin-logout:hover { border-color: var(--red); color: var(--red); }
+  .admin-body { padding: 2rem; }
+  .admin-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 1.5rem; margin-bottom: 2.5rem; }
+  .admin-stat { background: var(--dark2); border: 1px solid var(--border); padding: 1.5rem 2rem; }
+  .admin-stat .a-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 900; color: var(--gold); }
+  .admin-stat .a-label { color: var(--muted); font-size: 0.82rem; margin-top: 0.3rem; }
+  .admin-stat .a-icon { font-size: 1.3rem; margin-bottom: 0.5rem; }
+  .admin-section-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1.5rem; }
+  .admin-toolbar { display: flex; gap: 1rem; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .search-input { background: var(--dark2); border: 1px solid var(--border); color: var(--white); padding: 0.7rem 1.2rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; width: 260px; transition: border-color 0.3s; }
+  .search-input:focus { border-color: var(--gold); }
+  .search-input::placeholder { color: var(--muted); }
+  .filter-select { background: var(--dark2); border: 1px solid var(--border); color: var(--white); padding: 0.7rem 1.2rem; font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; cursor: pointer; }
+  .filter-select option { background: var(--dark2); }
+  .export-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); padding: 0.7rem 1.2rem; font-size: 0.85rem; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.3s; margin-left: auto; }
+  .export-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .admin-table-wrap { overflow-x: auto; }
+  .admin-table { width: 100%; border-collapse: collapse; }
+  .admin-table th { background: var(--dark3); color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; padding: 1rem 1.2rem; text-align: left; border-bottom: 1px solid var(--border); font-weight: 500; white-space: nowrap; }
+  .admin-table td { padding: 1rem 1.2rem; border-bottom: 1px solid rgba(201,168,76,0.08); font-size: 0.88rem; vertical-align: middle; }
+  .admin-table tr:hover td { background: rgba(201,168,76,0.04); }
+  .admin-table tr:last-child td { border-bottom: none; }
+  .badge-kurs { display: inline-block; padding: 0.25rem 0.7rem; font-size: 0.75rem; font-weight: 500; }
+  .b-das{background:rgba(52,152,219,0.15);color:#3498db;border:1px solid rgba(52,152,219,0.3)}
+  .b-ing{background:rgba(46,204,113,0.15);color:#2ecc71;border:1px solid rgba(46,204,113,0.3)}
+  .b-biz{background:rgba(155,89,182,0.15);color:#9b59b6;border:1px solid rgba(155,89,182,0.3)}
+  .b-diz{background:rgba(230,126,34,0.15);color:#e67e22;border:1px solid rgba(230,126,34,0.3)}
+  .b-mat{background:rgba(231,76,60,0.15);color:#e74c3c;border:1px solid rgba(231,76,60,0.3)}
+  .b-sha{background:rgba(241,196,15,0.15);color:#f1c40f;border:1px solid rgba(241,196,15,0.3)}
+  .s-new { color: var(--gold); font-size: 0.8rem; }
+  .s-done { color: var(--green); font-size: 0.8rem; }
+  .action-btn { background: none; border: 1px solid var(--border); color: var(--muted); padding: 0.3rem 0.7rem; font-size: 0.78rem; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.3s; margin-right: 0.3rem; }
+  .action-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .action-btn.del:hover { border-color: var(--red); color: var(--red); }
+  .empty-state { text-align: center; padding: 4rem; color: var(--muted); }
+  .chart-section { margin-top: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .chart-box { background: var(--dark2); border: 1px solid var(--border); padding: 1.5rem 2rem; }
+  .chart-box h3 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: 1.5rem; }
+  .bar-row { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.8rem; }
+  .bar-label { font-size: 0.8rem; color: var(--muted); width: 130px; flex-shrink: 0; }
+  .bar-track { flex: 1; background: var(--dark3); height: 10px; overflow: hidden; }
+  .bar-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-light)); transition: width 1s ease; }
+  .bar-count { font-size: 0.8rem; color: var(--gold); width: 24px; text-align: right; }
 
-        .logo { font-size: 22px; font-weight: 800; color: var(--primary); margin-bottom: 40px; letter-spacing: 1px; }
-        .menu-item { padding: 14px 18px; border-radius: 12px; cursor: pointer; color: #64748b; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; transition: 0.2s; font-weight: 500; }
-        .menu-item.active { background: rgba(99, 102, 241, 0.1); color: var(--primary); }
+  /* VIEW DETAIL MODAL */
+  .detail-modal { background: var(--dark2); border: 1px solid var(--border); width: 90%; max-width: 500px; padding: 2.5rem; position: relative; animation: fadeUp 0.4s ease; }
+  .detail-row { display: flex; gap: 1rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(201,168,76,0.08); padding-bottom: 1rem; }
+  .detail-label { color: var(--muted); font-size: 0.82rem; width: 120px; flex-shrink: 0; }
+  .detail-val { font-size: 0.9rem; }
 
-        /* --- COMPONENTS --- */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 20px; }
-        .card { background: var(--card); padding: 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); transition: 0.3s; }
-        
-        /* Responsive Table */
-        .table-container { overflow-x: auto; border-radius: 15px; background: var(--card); margin-top: 20px; border: 1px solid rgba(255,255,255,0.05); }
-        table { width: 100%; border-collapse: collapse; min-width: 600px; }
-        th, td { padding: 15px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        th { background: rgba(255,255,255,0.03); color: var(--primary); font-size: 11px; text-transform: uppercase; }
-        
-        .status-dot { height: 10px; width: 10px; border-radius: 50%; display: inline-block; margin-right: 5px; }
-        .quiz-option { padding: 14px; background: #334155; border-radius: 10px; margin-bottom: 8px; cursor: pointer; border: 2px solid transparent; }
-        .hidden { display: none !important; }
-
-        /* Spin Animation for Update button */
-        .spinning { animation: spin 0.8s ease-in-out; }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-    </style>
+  @media(max-width:900px){
+    nav{padding:1.2rem 1.5rem} nav ul{display:none}
+    .hero{grid-template-columns:1fr;padding:2rem;padding-top:6rem;gap:3rem}
+    .hero-left{padding-right:0}
+    .hero-right{grid-template-columns:1fr 1fr}
+    .hero-right .stat-card:nth-child(2),.hero-right .stat-card:nth-child(4){margin-top:0}
+    section{padding:4rem 1.5rem}
+    .courses-grid,.testimonials-grid{grid-template-columns:1fr}
+    .teachers-grid{grid-template-columns:1fr 1fr}
+    .features-layout{grid-template-columns:1fr;gap:2rem}
+    .divider{margin:0 1.5rem}
+    footer{flex-direction:column;gap:1.5rem;text-align:center;padding:2rem}
+    .cta-form{grid-template-columns:1fr}
+    .form-row{grid-template-columns:1fr}
+    .admin-stats{grid-template-columns:1fr 1fr}
+    .chart-section{grid-template-columns:1fr}
+  }
+</style>
 </head>
 <body>
 
-<div id="authOverlay">
-    <div class="auth-container">
-        <div class="logo">🚀 ZAMON ACADEMY</div>
-        <div class="tabs">
-            <button id="tabS" class="tab-btn active" onclick="switchTab('student')">O'quvchi</button>
-            <button id="tabT" class="tab-btn" onclick="switchTab('teacher')">O'qituvchi</button>
-        </div>
+<nav>
+  <div class="logo">Ilm<span>Markazi</span></div>
+  <ul>
+    <li><a href="file:///C:/Users/Asliddin/Downloads/oquv-markaz%20(1).html#courses">Kurslar</a></li>
+    <li><a href="file:///C:/Users/Asliddin/Downloads/oquv-markaz%20(1).html#about">Biz haqimizda</a></li>
+    <li><a href="file:///C:/Users/Asliddin/Downloads/oquv-markaz%20(1).html#teachers">O'qituvchilar</a></li>
+    <li><a href="file:///C:/Users/Asliddin/Downloads/oquv-markaz%20(1).html#testimonials">Fikrlar</a></li>
+    <li><a href="file:///C:/Users/Asliddin/Downloads/oquv-markaz%20(1).html#contact">Aloqa</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="admin-link" onclick="openAdminLogin()">⚙ Admin</button>
+    <button class="nav-btn" onclick="openRegister()">Ro'yxatdan o'tish</button>
+  </div>
+</nav>
 
-        <div id="studentForm">
-            <input type="text" id="regName" class="input-box" placeholder="Ism va Familiyangiz">
-            <input type="email" id="regEmail" class="input-box" placeholder="Email manzilingiz">
-            <select id="regSubject" class="input-box"></select>
-            <button class="main-btn" onclick="login('student')">O'qishni boshlash</button>
-        </div>
-
-        <div id="teacherForm" class="hidden">
-            <input type="text" id="tLogin" class="input-box" placeholder="Login: admin">
-            <input type="password" id="tPass" class="input-box" placeholder="Parol: 123">
-            <button class="main-btn" onclick="login('teacher')" style="background: linear-gradient(135deg, var(--secondary), var(--accent));">Panelga kirish</button>
-        </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-badge">⭐ Toshkent #1 O'quv Markaz</div>
+    <h1>Bilim — <em>Kelajakka</em> kalit.</h1>
+    <p class="hero-desc">IlmMarkazi — zamonaviy ta'lim, tajribali o'qituvchilar va innovatsion metodlar asosida o'z sohangizda yutuqlarga erishishingiz uchun yaratilgan premium o'quv markazidir.</p>
+    <div class="hero-btns">
+      <a class="btn-primary" href="file:///C:/Users/Asliddin/Downloads/oquv-markaz%20(1).html#courses">Kurslarni ko'rish</a>
+      <a class="btn-ghost" href="file:///C:/Users/Asliddin/Downloads/oquv-markaz%20(1).html#about">Ko'proq ma'lumot</a>
     </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-card"><div class="stat-icon">👨‍🎓</div><div class="stat-num">2,400+</div><div class="stat-label">Bitiruvchilar</div></div>
+    <div class="stat-card"><div class="stat-icon">📚</div><div class="stat-num">35+</div><div class="stat-label">Kurslar</div></div>
+    <div class="stat-card"><div class="stat-icon">🏆</div><div class="stat-num">98%</div><div class="stat-label">Mamnuniyat darajasi</div></div>
+    <div class="stat-card"><div class="stat-icon">👨‍🏫</div><div class="stat-num">45+</div><div class="stat-label">Mutaxassis o'qituvchilar</div></div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- COURSES -->
+<section id="courses">
+  <div class="section-label">Ta'lim yo'nalishlari</div>
+  <div class="section-title">Bizning Kurslarimiz</div>
+  <div class="section-desc">Har bir o'quvchi uchun mos kurs toping — boshlovchilardan tortib mutaxassislargacha.</div>
+  <div class="courses-grid">
+    <div class="course-card animate" style="transition-delay: 0s;"><div class="course-badge">Eng mashhur</div><div class="course-icon">💻</div><div class="course-title">Dasturlash &amp; IT</div><div class="course-desc">Python, JavaScript, Web dasturlash, ma'lumotlar tahlili va sun'iy intellekt asoslarini o'rganing.</div><div class="course-meta"><span>📅 3-6 oy</span><span>👥 Guruh yoki individual</span></div></div>
+    <div class="course-card animate" style="transition-delay: 0.1s;"><div class="course-icon">🌐</div><div class="course-title">Ingliz tili</div><div class="course-desc">IELTS tayyorgarlik, biznes ingliz tili, qo'ng'iroq va muloqot ko'nikmalari.</div><div class="course-meta"><span>📅 2-12 oy</span><span>👥 A1–C1 darajalar</span></div></div>
+    <div class="course-card animate" style="transition-delay: 0.2s;"><div class="course-badge">Yangi</div><div class="course-icon">📊</div><div class="course-title">Biznes &amp; Marketing</div><div class="course-desc">Digital marketing, SMM, brending, biznes strategiyasi va startap boshqaruvi.</div><div class="course-meta"><span>📅 2-4 oy</span><span>👥 Amaliy loyihalar</span></div></div>
+    <div class="course-card animate" style="transition-delay: 0s;"><div class="course-icon">🎨</div><div class="course-title">Grafik Dizayn</div><div class="course-desc">Adobe Photoshop, Illustrator, Figma va UI/UX dizayn asoslari.</div><div class="course-meta"><span>📅 3-5 oy</span><span>👥 Portfolio tayyorlash</span></div></div>
+    <div class="course-card animate" style="transition-delay: 0.1s;"><div class="course-icon">🔢</div><div class="course-title">Matematika &amp; Fanlar</div><div class="course-desc">Maktab va oliy ta'lim uchun matematika, fizika, kimyo — olimpiada tayyorgarlik.</div><div class="course-meta"><span>📅 1-12 oy</span><span>👥 DTM tayyorlash</span></div></div>
+    <div class="course-card animate" style="transition-delay: 0.2s;"><div class="course-icon">🎯</div><div class="course-title">Shaxsiy Rivojlanish</div><div class="course-desc">Liderlik ko'nikmalari, jamoatchilik nutqi, vaqtni boshqarish va maqsad qo'yish.</div><div class="course-meta"><span>📅 1-2 oy</span><span>👥 Trening format</span></div></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="features-layout">
+    <div>
+      <div class="section-label">Nima uchun biz?</div>
+      <div class="section-title">Sifatli ta'lim —<br>kafolatlangan natija</div>
+      <div class="features-list">
+        <div class="feature-item animate"><div class="feature-icon">🎓</div><div class="feature-content"><h3>Tajribali o'qituvchilar</h3><p>Barcha murabbiylarimiz o'z sohasida 5+ yillik amaliy tajribaga ega sertifikatlangan mutaxassislar.</p></div></div>
+        <div class="feature-item animate"><div class="feature-icon">📱</div><div class="feature-content"><h3>Onlayn va offline o'quv</h3><p>Qulayligingizga ko'ra sinf xonasida yoki masofaviy shaklda o'qish imkoniyati.</p></div></div>
+        <div class="feature-item animate"><div class="feature-icon">📜</div><div class="feature-content"><h3>Sertifikat va imkoniyatlar</h3><p>Kurs yakunida rasmiy sertifikat va ishga joylashishda ko'mak beramiz.</p></div></div>
+        <div class="feature-item animate"><div class="feature-icon">💬</div><div class="feature-content"><h3>24/7 qo'llab-quvvatlash</h3><p>O'quv jarayonida savollaringizga har doim javob olasiz — dars vaqtidan tashqarida ham.</p></div></div>
+      </div>
+    </div>
+    <div class="animate">
+      <div class="big-quote">"Bilim — bu <em>insonni ozod</em> qiladigan eng kuchli qurol."</div>
+      <div class="quote-attr">Nelson Mandela</div>
+      <div style="margin-top:3rem;padding:2rem;border:1px solid var(--border);background:var(--dark);">
+        <div style="font-family:&#39;Playfair Display&#39;,serif;font-size:1.2rem;margin-bottom:1rem;">2016-yildan buyon</div>
+        <div style="color:var(--muted);font-size:0.9rem;line-height:1.8;">O'zbekistonning yetakchi o'quv markazlaridan biri sifatida, biz minglab o'quvchilarga o'z kareralarida muvaffaqiyatga erishishda yordam berdik.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEACHERS -->
+<section id="teachers">
+  <div class="section-label">Jamoamiz</div>
+  <div class="section-title">Bizning O'qituvchilar</div>
+  <div class="section-desc">Eng yaxshi natijalar uchun eng tajribali murabbiylar bilan ishlang.</div>
+  <div class="teachers-grid">
+    <div class="teacher-card animate" style="transition-delay: 0s;"><div class="teacher-avatar">👨‍💻</div><div class="teacher-name">Bobur Yusupov</div><div class="teacher-subject">Dasturlash</div><div class="teacher-exp">8 yil tajriba • Google sertifikati</div></div>
+    <div class="teacher-card animate" style="transition-delay: 0.1s;"><div class="teacher-avatar">👩‍🏫</div><div class="teacher-name">Malika Rahimova</div><div class="teacher-subject">Ingliz tili</div><div class="teacher-exp">10 yil tajriba • IELTS 8.5</div></div>
+    <div class="teacher-card animate" style="transition-delay: 0.2s;"><div class="teacher-avatar">👨‍💼</div><div class="teacher-name">Jasur Toshmatov</div><div class="teacher-subject">Biznes &amp; Marketing</div><div class="teacher-exp">7 yil tajriba • MBA</div></div>
+    <div class="teacher-card animate" style="transition-delay: 0s;"><div class="teacher-avatar">👩‍🎨</div><div class="teacher-name">Nilufar Karimova</div><div class="teacher-subject">Grafik Dizayn</div><div class="teacher-exp">6 yil tajriba • Adobe sertifikati</div></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-label">O'quvchilarimiz</div>
+  <div class="section-title">Ularning muvaffaqiyati —<br>bizning g'ururumiz</div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card animate" style="transition-delay: 0.1s;"><div class="stars">★★★★★</div><div class="testimonial-text">IlmMarkazida dasturlash kursini tugatgandan so'ng, Toshkentdagi eng yaxshi IT kompaniyalardan birida ish topdim. O'qituvchilarimiz nafaqat nazariy bilim, balki real loyihalar ustida ishlashni o'rgatdi.</div><div class="testimonial-author"><div class="author-avatar">👨</div><div><div class="author-name">Sanjar Mirzaev</div><div class="author-course">Dasturlash kursi, 2024</div></div></div></div>
+    <div class="testimonial-card animate" style="transition-delay: 0.2s;"><div class="stars">★★★★★</div><div class="testimonial-text">IELTS 7.0 olishim uchun 6 oy davomida tayyorgarlik ko'rdim. Malika muallima har bir o'quvchiga alohida e'tibor qaratadi. Hozir Germaniyada o'qiyapman — orzuim amalga oshdi!</div><div class="testimonial-author"><div class="author-avatar">👩</div><div><div class="author-name">Dilnoza Hasanova</div><div class="author-course">Ingliz tili, IELTS</div></div></div></div>
+    <div class="testimonial-card animate" style="transition-delay: 0s;"><div class="stars">★★★★★</div><div class="testimonial-text">Digital marketing kursidan keyin o'z biznesimni boshladim va birinchi oyda 50+ mijoz topdim. Amaliy yondashuv va mentor qo'llab-quvvatlashi juda muhim bo'ldi.</div><div class="testimonial-author"><div class="author-avatar">👨</div><div><div class="author-name">Akbar Normatov</div><div class="author-course">Digital Marketing, 2023</div></div></div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="cta-box">
+    <div class="section-label">Bugun boshlang</div>
+    <div class="section-title">Kelajagingizga<br>investitsiya qiling</div>
+    <div class="section-desc" style="margin:0 auto 0.5rem;">Bepul konsultatsiya uchun ro'yxatdan o'ting va o'quv jarayonini boshlang.</div>
+    <div class="cta-form">
+      <input class="form-input" id="q-ism" type="text" placeholder="Ismingiz *">
+      <input class="form-input" id="q-familya" type="text" placeholder="Familyangiz *">
+      <input class="form-input form-full" id="q-email" type="email" placeholder="Email manzilingiz *">
+      <input class="form-input" id="q-tel" type="tel" placeholder="Telefon raqam *">
+      <select class="form-input" id="q-kurs" style="cursor:pointer;">
+        <option value="" disabled="" selected="">Qiziqtirayotgan kurs *</option>
+        <option>Dasturlash &amp; IT</option>
+        <option>Ingliz tili</option>
+        <option>Biznes &amp; Marketing</option>
+        <option>Grafik Dizayn</option>
+        <option>Matematika &amp; Fanlar</option>
+        <option>Shaxsiy Rivojlanish</option>
+      </select>
+      <button class="form-submit" onclick="submitQuickForm()">Bepul konsultatsiya olish →</button>
+    </div>
+    <div style="margin-top:2rem;display:flex;justify-content:center;gap:3rem;color:var(--muted);font-size:0.85rem;flex-wrap:wrap;">
+      <span>📍 Toshkent, Chilonzor tumani</span>
+      <span>📞 +998 71 200-00-00</span>
+      <span>✉️ info@ilmmarkazi.uz</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="logo" style="margin-bottom:0.5rem;">Ilm<span>Markazi</span></div>
+    <div class="footer-copy">© 2025 IlmMarkazi. Barcha huquqlar himoyalangan.</div>
+  </div>
+  <div class="footer-links">
+    <a href="file:///C:/Users/Asliddin/Downloads/oquv-markaz%20(1).html#courses">Kurslar</a>
+    <a href="file:///C:/Users/Asliddin/Downloads/oquv-markaz%20(1).html#about">Biz haqimizda</a>
+    <a href="file:///C:/Users/Asliddin/Downloads/oquv-markaz%20(1).html#teachers">O'qituvchilar</a>
+    <a href="file:///C:/Users/Asliddin/Downloads/oquv-markaz%20(1).html#contact">Aloqa</a>
+  </div>
+</footer>
+
+<!-- REGISTER MODAL -->
+<div class="modal-overlay" id="register-overlay">
+  <div class="register-modal">
+    <button class="modal-close" onclick="closeRegister()">✕</button>
+    <div id="reg-form-wrap">
+      <div class="modal-title">Ro'yxatdan o'tish</div>
+      <div class="modal-sub">Barcha majburiy (*) maydonlarni to'ldiring.</div>
+      <div class="reg-form">
+        <div class="form-row">
+          <input class="form-input" id="r-ism" type="text" placeholder="Ismingiz *">
+          <input class="form-input" id="r-familya" type="text" placeholder="Familyangiz *">
+        </div>
+        <input class="form-input" id="r-email" type="email" placeholder="Email manzilingiz *">
+        <input class="form-input" id="r-tel" type="tel" placeholder="Telefon raqam (+998...) *">
+        <select class="form-input" id="r-kurs" style="cursor:pointer;">
+          <option value="" disabled="" selected="">Qiziqtirayotgan kursni tanlang *</option>
+          <option>Dasturlash &amp; IT</option>
+          <option>Ingliz tili</option>
+          <option>Biznes &amp; Marketing</option>
+          <option>Grafik Dizayn</option>
+          <option>Matematika &amp; Fanlar</option>
+          <option>Shaxsiy Rivojlanish</option>
+        </select>
+        <textarea class="form-input" id="r-izoh" rows="3" placeholder="Qo&#39;shimcha izoh (ixtiyoriy)" style="resize:none;"></textarea>
+        <button class="form-submit" style="margin-top:0.5rem;" onclick="submitRegister()">Yuborish →</button>
+      </div>
+    </div>
+    <div class="success-msg" id="reg-success">
+      <div class="s-icon">🎉</div>
+      <h3>Muvaffaqiyatli yuborildi!</h3>
+      <p>Sizning arizangiz qabul qilindi. Tez orada mutaxassislarimiz siz bilan bog'lanadi.</p>
+      <button class="btn-primary" style="margin-top:2rem;" onclick="closeRegister()">Yopish</button>
+    </div>
+  </div>
 </div>
 
-<div id="studentLayout" class="layout">
-    <div class="sidebar">
-        <div class="logo">🚀 ZAMON</div>
-        <div class="menu-item active" onclick="showSec('sHome', this)">📚 <span>Kurslarim</span></div>
-        <div class="menu-item" onclick="showSec('sTest', this)">✍️ <span>Imtihonlar</span></div>
-        <div class="menu-item" onclick="showSec('sHW', this)">📤 <span>Vazifalar</span></div>
-        <div class="menu-item" onclick="location.reload()" style="color: var(--accent);">🚪 <span>Chiqish</span></div>
+<!-- ADMIN LOGIN MODAL -->
+<div class="modal-overlay" id="admin-login-overlay">
+  <div class="admin-login-modal">
+    <button class="modal-close" onclick="closeAdminLogin()">✕</button>
+    <div class="modal-title">Admin kirish</div>
+    <div class="modal-sub">Admin paneliga kirish uchun ma'lumotlarni kiriting.</div>
+    <div style="display:flex;flex-direction:column;gap:1rem;">
+      <input class="form-input" id="admin-user" type="text" placeholder="Foydalanuvchi nomi" onkeydown="if(event.key===&#39;Enter&#39;)doAdminLogin()">
+      <input class="form-input" id="admin-pass" type="password" placeholder="Parol" onkeydown="if(event.key===#39;Enter&#39;)doAdminLogin()">
+      <div class="admin-err" id="admin-err">❌ Login yoki parol noto'g'ri!</div>
+      <button class="form-submit" onclick="doAdminLogin()">Kirish →</button>
+      <div style="color:var(--muted);font-size:0.78rem;text-align:center;opacity:0.5;">Login: <b>admin</b> &nbsp;|&nbsp; Parol: <b>1234</b></div>
     </div>
-    <div class="content">
-        <div id="sHome" class="s-section active">
-            <h1>Salom, <span id="spanName">O'quvchi</span>! 👋</h1>
-            <p style="color: #94a3b8; font-size: 14px;">Yo'nalish: <strong id="spanSub" style="color: var(--primary);"></strong></p>
-            <div class="grid" id="courseGrid"></div>
-        </div>
-        
-        <div id="sTest" class="s-section hidden">
-            <h2>Murakkab Testlar</h2>
-            <div id="quizContainer" class="card" style="margin-top: 20px;">
-                <div id="quizContent">
-                    <p>Fanda darajangizni aniqlang.</p>
-                    <button class="main-btn" style="margin-top: 15px;" onclick="startQuiz()">Testni boshlash</button>
-                </div>
-            </div>
-        </div>
-
-        <div id="sHW" class="s-section hidden">
-            <h2>Uy Vazifasini Yuborish</h2>
-            <div class="card" style="margin-top: 20px;">
-                <textarea id="hwText" class="input-box" style="height: 150px;" placeholder="Yechimni shu yerga yozing..."></textarea>
-                <button class="main-btn" onclick="submitHW()">Topshirish</button>
-            </div>
-        </div>
-    </div>
+  </div>
 </div>
 
-<div id="teacherLayout" class="layout">
-    <div class="sidebar">
-        <div class="logo" style="color: var(--secondary);">👑 USTOZ</div>
-        <div class="menu-item active" onclick="showSec('tStats', this)">📊 <span>Statistika</span></div>
-        <div class="menu-item" onclick="showSec('tUsers', this)">👥 <span>O'quvchilar</span></div>
-        <div class="menu-item" onclick="location.reload()" style="color: var(--accent);">🚪 <span>Chiqish</span></div>
-    </div>
-    <div class="content">
-        <div id="tStats" class="t-section active">
-            <h1>Akademik Holat</h1>
-            <div class="grid">
-                <div class="card"><h3>Jami O'quvchilar</h3><h2 id="mTotal" style="color: var(--primary);">0</h2></div>
-                <div class="card"><h3>Vazifalar</h3><h2 id="mHW" style="color: var(--secondary);">0</h2></div>
-                <div class="card"><h3>O'rtacha</h3><h2 style="color: var(--success);">92%</h2></div>
-            </div>
-        </div>
+<!-- DETAIL MODAL -->
+<div class="modal-overlay" id="detail-overlay">
+  <div class="detail-modal">
+    <button class="modal-close" onclick="document.getElementById(&#39;detail-overlay&#39;).classList.remove(&#39;active&#39;)">✕</button>
+    <div class="modal-title" style="font-size:1.4rem;margin-bottom:1.5rem;">Ariza tafsiloti</div>
+    <div id="detail-body"></div>
+  </div>
+</div>
 
-        <div id="tUsers" class="t-section hidden">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                <h2>👥 O'quvchilar Monitoringi</h2>
-                <button id="updateBtn" onclick="updateMonitor(true)" class="main-btn" style="width: auto; padding: 10px 20px;">🔄 Yangilash</button>
-            </div>
-            <div class="table-container">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>O'quvchi / Email</th>
-                            <th>Yo'nalish</th>
-                            <th>Natija</th>
-                            <th>Holat</th>
-                            <th>Oxirgi Faollik</th>
-                        </tr>
-                    </thead>
-                    <tbody id="monitorTableBody"></tbody>
-                </table>
-            </div>
-        </div>
+<!-- ADMIN PANEL -->
+<div id="admin-panel">
+  <div class="admin-nav">
+    <div style="display:flex;align-items:center;gap:0.5rem;">
+      <div class="logo">Ilm<span>Markazi</span></div>
+      <span class="admin-badge">Admin Panel</span>
     </div>
+    <button class="admin-logout" onclick="adminLogout()">← Saytga qaytish</button>
+  </div>
+  <div class="admin-body">
+    <div class="admin-stats">
+      <div class="admin-stat"><div class="a-icon">📋</div><div class="a-num" id="stat-total">0</div><div class="a-label">Jami arizalar</div></div>
+      <div class="admin-stat"><div class="a-icon">🆕</div><div class="a-num" id="stat-new">0</div><div class="a-label">Yangi arizalar</div></div>
+      <div class="admin-stat"><div class="a-icon">✅</div><div class="a-num" id="stat-contacted">0</div><div class="a-label">Bog'lanildi</div></div>
+      <div class="admin-stat"><div class="a-icon">📚</div><div class="a-num">6</div><div class="a-label">Kurslar soni</div></div>
+    </div>
+
+    <div class="admin-section-title">Arizalar ro'yxati</div>
+
+    <div class="admin-toolbar">
+      <input class="search-input" type="text" placeholder="🔍 Ism, email, tel bo&#39;yicha..." id="admin-search" oninput="renderTable()">
+      <select class="filter-select" id="admin-filter" onchange="renderTable()">
+        <option value="">Barcha kurslar</option>
+        <option>Dasturlash &amp; IT</option>
+        <option>Ingliz tili</option>
+        <option>Biznes &amp; Marketing</option>
+        <option>Grafik Dizayn</option>
+        <option>Matematika &amp; Fanlar</option>
+        <option>Shaxsiy Rivojlanish</option>
+      </select>
+      <select class="filter-select" id="admin-st-filter" onchange="renderTable()">
+        <option value="">Barcha holatlar</option>
+        <option value="Yangi">Yangi</option>
+        <option value="Bog&#39;lanildi">Bog'lanildi</option>
+      </select>
+      <button class="export-btn" onclick="exportCSV()">⬇ CSV yuklab olish</button>
+    </div>
+
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Ism Familya</th>
+            <th>Email</th>
+            <th>Tel raqam</th>
+            <th>Kurs</th>
+            <th>Holat</th>
+            <th>Sana</th>
+            <th>Amallar</th>
+          </tr>
+        </thead>
+        <tbody id="admin-tbody"></tbody>
+      </table>
+    </div>
+
+    <div class="chart-section">
+      <div class="chart-box">
+        <h3>📊 Kurslar bo'yicha arizalar</h3>
+        <div id="bar-chart"></div>
+      </div>
+      <div class="chart-box">
+        <h3>📅 So'nggi 7 kun</h3>
+        <div id="daily-chart"></div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-    const fanlar = ["Oliy Matematika", "Software Engineering", "English (C1/IELTS)", "Nazariy Fizika", "Molekulyar Biologiya", "Organik Kimyo", "Siyosiy Tarix", "Ona tili", "Rus tili", "UI/UX Design", "Arab tili", "Kritik Mantiq"];
-    const mathQuiz = [
-        {q: "f(x) = 3x² - 4x + 5 hosilasini toping?", a: ["6x - 4", "3x - 4", "6x + 5", "x² - 4"], c: 0, e: "(3x²)' = 6x, (-4x)' = -4."},
-        {q: "log₂32 + log₃27 nechaga teng?", a: ["5", "8", "15", "9"], c: 1, e: "5 + 3 = 8."},
-        {q: "3 ta oq va 5 ta qora shar ichidan oq shar olish ehtimoli?", a: ["3/5", "3/8", "5/8", "1/2"], c: 1, e: "Jami 8 ta, oqlar 3 ta."}
-    ];
+let applications = JSON.parse(localStorage.getItem('ilm_v2') || 'null');
+if (!applications) {
+  applications = [
+    {id:1,ism:'Sardor',familya:'Aliyev',email:'sardor@gmail.com',tel:'+998901234567',kurs:'Dasturlash & IT',izoh:'',status:"Bog'lanildi",sana:'2025-01-15'},
+    {id:2,ism:'Zulfiya',familya:'Karimova',email:'zulfiya@mail.ru',tel:'+998931234567',kurs:'Ingliz tili',izoh:'IELTS uchun',status:'Yangi',sana:'2025-01-18'},
+    {id:3,ism:'Mirzo',familya:'Toshmatov',email:'mirzo@gmail.com',tel:'+998941234567',kurs:'Biznes & Marketing',izoh:'',status:'Yangi',sana:'2025-01-20'},
+    {id:4,ism:'Nodira',familya:'Hasanova',email:'nodira@gmail.com',tel:'+998951234567',kurs:'Grafik Dizayn',izoh:"Figma o'rganmoqchi",status:"Bog'lanildi",sana:'2025-01-22'},
+    {id:5,ism:'Jasur',familya:'Rahimov',email:'jasur@yahoo.com',tel:'+998961234567',kurs:'Matematika & Fanlar',izoh:'',status:'Yangi',sana:'2025-01-25'},
+  ];
+  save();
+}
+function save(){ localStorage.setItem('ilm_v2', JSON.stringify(applications)); }
 
-    let currentStudent = null;
+// Scroll animations
+const obs = new IntersectionObserver(entries => entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }), {threshold:0.1});
+document.querySelectorAll('.animate').forEach(el => obs.observe(el));
+document.querySelectorAll('.courses-grid .course-card,.teachers-grid .teacher-card,.testimonials-grid .testimonial-card').forEach((el,i)=>{ el.style.transitionDelay=(i%3)*0.1+'s'; });
 
-    window.onload = () => {
-        document.getElementById('regSubject').innerHTML = fanlar.map(f => `<option value="${f}">${f}</option>`).join('');
-        document.getElementById('courseGrid').innerHTML = fanlar.map(f => `
-            <div class="card"><h3>${f}</h3><p style="font-size:12px; opacity:0.6; margin-top:5px;">Kursga kirish →</p></div>
-        `).join('');
-    };
+// Register modal
+function openRegister(){
+  document.getElementById('register-overlay').classList.add('active');
+  document.getElementById('reg-form-wrap').style.display='block';
+  document.getElementById('reg-success').style.display='none';
+}
+function closeRegister(){
+  document.getElementById('register-overlay').classList.remove('active');
+  ['r-ism','r-familya','r-email','r-tel','r-izoh'].forEach(id=>{ const el=document.getElementById(id); if(el) el.value=''; });
+  document.getElementById('r-kurs').value='';
+}
+function submitRegister(){
+  const v = id => document.getElementById(id).value.trim();
+  if(!v('r-ism')||!v('r-familya')||!v('r-email')||!v('r-tel')||!v('r-kurs')){ alert("Iltimos, barcha majburiy (*) maydonlarni to'ldiring!"); return; }
+  if(!v('r-email').includes('@')){ alert("Email manzil noto'g'ri!"); return; }
+  applications.push({id:Date.now(),ism:v('r-ism'),familya:v('r-familya'),email:v('r-email'),tel:v('r-tel'),kurs:document.getElementById('r-kurs').value,izoh:v('r-izoh'),status:'Yangi',sana:new Date().toISOString().split('T')[0]});
+  save();
+  document.getElementById('reg-form-wrap').style.display='none';
+  document.getElementById('reg-success').style.display='block';
+}
 
-    function switchTab(type) {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.getElementById('studentForm').classList.toggle('hidden', type !== 'student');
-        document.getElementById('teacherForm').classList.toggle('hidden', type !== 'teacher');
-        document.getElementById(type === 'student' ? 'tabS' : 'tabT').classList.add('active');
-    }
+// Quick form
+function submitQuickForm(){
+  const v = id => document.getElementById(id).value.trim();
+  if(!v('q-ism')||!v('q-familya')||!v('q-email')||!v('q-tel')||!document.getElementById('q-kurs').value){ alert("Iltimos, barcha maydonlarni to'ldiring!"); return; }
+  applications.push({id:Date.now(),ism:v('q-ism'),familya:v('q-familya'),email:v('q-email'),tel:v('q-tel'),kurs:document.getElementById('q-kurs').value,izoh:'',status:'Yangi',sana:new Date().toISOString().split('T')[0]});
+  save();
+  ['q-ism','q-familya','q-email','q-tel'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('q-kurs').value='';
+  alert("Tashakkur! Arizangiz muvaffaqiyatli yuborildi. Tez orada siz bilan bog'lanamiz.");
+}
 
-    function login(type) {
-        if(type === 'student') {
-            const name = document.getElementById('regName').value;
-            const email = document.getElementById('regEmail').value;
-            const sub = document.getElementById('regSubject').value;
-            if(!name || !email) return alert("Email va ismni to'ldiring!");
+// Admin login
+function openAdminLogin(){ document.getElementById('admin-login-overlay').classList.add('active'); document.getElementById('admin-err').style.display='none'; document.getElementById('admin-user').value=''; document.getElementById('admin-pass').value=''; }
+function closeAdminLogin(){ document.getElementById('admin-login-overlay').classList.remove('active'); }
+function doAdminLogin(){
+  const u=document.getElementById('admin-user').value;
+  const p=document.getElementById('admin-pass').value;
+  if(u==='admin'&&p==='1234'){ closeAdminLogin(); openAdmin(); }
+  else { document.getElementById('admin-err').style.display='block'; }
+}
+function adminLogout(){ document.getElementById('admin-panel').style.display='none'; document.body.style.overflow=''; }
 
-            currentStudent = { id: Date.now(), name, email, subject: sub, score: 0, hw: 0, lastActive: new Date().toLocaleTimeString(), online: true };
-            let db = JSON.parse(localStorage.getItem('edu_db')) || [];
-            db.push(currentStudent);
-            localStorage.setItem('edu_db', JSON.stringify(db));
+function openAdmin(){
+  document.getElementById('admin-panel').style.display='block';
+  document.body.style.overflow='hidden';
+  document.getElementById('admin-panel').style.overflow='auto';
+  renderTable(); renderCharts();
+}
 
-            document.getElementById('authOverlay').classList.add('hidden');
-            document.getElementById('studentLayout').style.display = 'block';
-            document.getElementById('spanName').innerText = name;
-            document.getElementById('spanSub').innerText = sub;
-        } else {
-            if(document.getElementById('tLogin').value === "admin" && document.getElementById('tPass').value === "123") {
-                document.getElementById('authOverlay').classList.add('hidden');
-                document.getElementById('teacherLayout').style.display = 'block';
-                updateMonitor();
-            } else alert("Xato!");
-        }
-    }
+function kBadge(k){
+  if(k.includes('Dasturlash')) return 'b-das';
+  if(k.includes('Ingliz')) return 'b-ing';
+  if(k.includes('Biznes')) return 'b-biz';
+  if(k.includes('Dizayn')) return 'b-diz';
+  if(k.includes('Matematika')) return 'b-mat';
+  return 'b-sha';
+}
 
-    function startQuiz() {
-        let qIdx = 0;
-        const container = document.getElementById('quizContent');
-        const renderQ = () => {
-            const q = mathQuiz[qIdx];
-            container.innerHTML = `
-                <h3>${q.q}</h3>
-                ${q.a.map((opt, i) => `<div class="quiz-option" onclick="check(${i}, ${q.c})">${opt}</div>`).join('')}
-                <div id="expl" class="explanation hidden" style="background: rgba(99,102,241,0.1); padding:10px; border-radius:10px; margin-top:10px;">${q.e}</div>
-                <button id="nextQ" class="main-btn hidden" style="margin-top:10px;">Keyingisi</button>
-            `;
-        };
-        window.check = (idx, correct) => {
-            const opts = document.querySelectorAll('.quiz-option');
-            opts.forEach(o => o.style.pointerEvents = 'none');
-            if(idx === correct) { opts[idx].style.borderColor = 'var(--success)'; currentStudent.score += 33; }
-            else { opts[idx].style.borderColor = 'var(--accent)'; opts[correct].style.borderColor = 'var(--success)'; }
-            document.getElementById('expl').classList.remove('hidden');
-            const btn = document.getElementById('nextQ');
-            btn.classList.remove('hidden');
-            btn.onclick = () => { qIdx++; qIdx < mathQuiz.length ? renderQ() : finishQuiz(); };
-        };
-        const finishQuiz = () => { container.innerHTML = `<h3>Tayyor!</h3><p>Natija: ${currentStudent.score} ball</p>`; saveProgress(); };
-        renderQ();
-    }
+function getFiltered(){
+  const q=(document.getElementById('admin-search')?.value||'').toLowerCase();
+  const kf=document.getElementById('admin-filter')?.value||'';
+  const sf=document.getElementById('admin-st-filter')?.value||'';
+  return applications.filter(a=>{
+    const mq=!q||(a.ism+' '+a.familya+' '+a.email+' '+a.tel).toLowerCase().includes(q);
+    const mk=!kf||a.kurs===kf;
+    const ms=!sf||a.status===sf;
+    return mq&&mk&&ms;
+  });
+}
 
-    function submitHW() {
-        if(!document.getElementById('hwText').value) return;
-        currentStudent.hw++;
-        alert("Vazifa yuborildi!");
-        document.getElementById('hwText').value = "";
-        saveProgress();
-    }
+function renderTable(){
+  const filtered=getFiltered();
+  document.getElementById('stat-total').textContent=applications.length;
+  document.getElementById('stat-new').textContent=applications.filter(a=>a.status==='Yangi').length;
+  document.getElementById('stat-contacted').textContent=applications.filter(a=>a.status==="Bog'lanildi").length;
+  const tbody=document.getElementById('admin-tbody');
+  if(!filtered.length){ tbody.innerHTML=`<tr><td colspan="8"><div class="empty-state"><div style="font-size:2.5rem;margin-bottom:0.8rem;opacity:0.4">📭</div><div>Ariza topilmadi</div></div></td></tr>`; return; }
+  tbody.innerHTML=filtered.map((a,i)=>`
+    <tr>
+      <td style="color:var(--muted)">${i+1}</td>
+      <td><strong>${a.ism} ${a.familya}</strong></td>
+      <td style="color:var(--muted);font-size:0.82rem">${a.email}</td>
+      <td>${a.tel}</td>
+      <td><span class="badge-kurs ${kBadge(a.kurs)}">${a.kurs}</span></td>
+      <td>${a.status==='Yangi'?'<span class="s-new">● Yangi</span>':'<span class="s-done">● Bog\'lanildi</span>'}</td>
+      <td style="color:var(--muted)">${a.sana}</td>
+      <td>
+        <button class="action-btn" onclick="viewDetail(${a.id})">👁</button>
+        ${a.status==='Yangi'?`<button class="action-btn" onclick="markDone(${a.id})">✓</button>`:''}
+        <button class="action-btn del" onclick="delApp(${a.id})">✕</button>
+      </td>
+    </tr>
+  `).join('');
+}
 
-    function saveProgress() {
-        let db = JSON.parse(localStorage.getItem('edu_db')) || [];
-        const idx = db.findIndex(s => s.id === currentStudent.id);
-        if(idx !== -1) {
-            currentStudent.lastActive = new Date().toLocaleTimeString();
-            db[idx] = currentStudent;
-            localStorage.setItem('edu_db', JSON.stringify(db));
-        }
-    }
+function viewDetail(id){
+  const a=applications.find(x=>x.id===id);
+  if(!a) return;
+  document.getElementById('detail-body').innerHTML=`
+    <div class="detail-row"><div class="detail-label">Ism Familya</div><div class="detail-val"><strong>${a.ism} ${a.familya}</strong></div></div>
+    <div class="detail-row"><div class="detail-label">Email</div><div class="detail-val">${a.email}</div></div>
+    <div class="detail-row"><div class="detail-label">Telefon</div><div class="detail-val">${a.tel}</div></div>
+    <div class="detail-row"><div class="detail-label">Kurs</div><div class="detail-val"><span class="badge-kurs ${kBadge(a.kurs)}">${a.kurs}</span></div></div>
+    <div class="detail-row"><div class="detail-label">Holat</div><div class="detail-val">${a.status==='Yangi'?'<span class="s-new">● Yangi</span>':'<span class="s-done">● Bog\'lanildi</span>'}</div></div>
+    <div class="detail-row"><div class="detail-label">Sana</div><div class="detail-val">${a.sana}</div></div>
+    ${a.izoh?`<div class="detail-row" style="border:none"><div class="detail-label">Izoh</div><div class="detail-val" style="color:var(--muted)">${a.izoh}</div></div>`:''}
+  `;
+  document.getElementById('detail-overlay').classList.add('active');
+}
 
-    // --- UPDATED MONITOR FUNCTION ---
-    function updateMonitor(isManual = false) {
-        const btn = document.getElementById('updateBtn');
-        if(isManual) btn.classList.add('spinning'); // Animatsiya qo'shish
+function markDone(id){
+  const a=applications.find(x=>x.id===id);
+  if(a){ a.status="Bog'lanildi"; save(); renderTable(); renderCharts(); }
+}
+function delApp(id){
+  if(!confirm("Bu arizani o'chirishni tasdiqlaysizmi?")) return;
+  applications=applications.filter(x=>x.id!==id); save(); renderTable(); renderCharts();
+}
 
-        const db = JSON.parse(localStorage.getItem('edu_db')) || [];
-        
-        // Statistikani yangilash
-        document.getElementById('mTotal').innerText = db.length;
-        document.getElementById('mHW').innerText = db.reduce((a, b) => a + b.hw, 0);
-        
-        // Jadvalni yangilash
-        const tableBody = document.getElementById('monitorTableBody');
-        if(db.length === 0) {
-            tableBody.innerHTML = `<tr><td colspan="5" style="text-align:center; opacity:0.5;">Hozircha o'quvchilar yo'q</td></tr>`;
-        } else {
-            tableBody.innerHTML = db.map(s => `
-                <tr>
-                    <td><strong>${s.name}</strong><br><small style="color:var(--primary)">${s.email}</small></td>
-                    <td><small>${s.subject}</small></td>
-                    <td><strong>${s.score} ball</strong><br><small>${s.hw} ta vazifa</small></td>
-                    <td><span class="status-dot" style="background:${s.online ? '#10b981' : '#64748b'}"></span> ${s.online ? 'Online' : 'Offline'}</td>
-                    <td><small>${s.lastActive}</small></td>
-                </tr>
-            `).join('');
-        }
+function renderCharts(){
+  const courses=['Dasturlash & IT','Ingliz tili','Biznes & Marketing','Grafik Dizayn','Matematika & Fanlar','Shaxsiy Rivojlanish'];
+  const counts=courses.map(c=>applications.filter(a=>a.kurs===c).length);
+  const maxC=Math.max(...counts,1);
+  document.getElementById('bar-chart').innerHTML=courses.map((c,i)=>`
+    <div class="bar-row">
+      <div class="bar-label">${c.split(' ')[0]}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${(counts[i]/maxC)*100}%"></div></div>
+      <div class="bar-count">${counts[i]}</div>
+    </div>`).join('');
+  const days=[];
+  for(let i=6;i>=0;i--){
+    const d=new Date(); d.setDate(d.getDate()-i);
+    const ds=d.toISOString().split('T')[0];
+    days.push({label:d.toLocaleDateString('uz-UZ',{weekday:'short',day:'numeric'}),count:applications.filter(a=>a.sana===ds).length});
+  }
+  const maxD=Math.max(...days.map(d=>d.count),1);
+  document.getElementById('daily-chart').innerHTML=days.map(d=>`
+    <div class="bar-row">
+      <div class="bar-label">${d.label}</div>
+      <div class="bar-track"><div class="bar-fill" style="width:${(d.count/maxD)*100}%"></div></div>
+      <div class="bar-count">${d.count}</div>
+    </div>`).join('');
+}
 
-        // Animatsiyani to'xtatish
-        if(isManual) {
-            setTimeout(() => btn.classList.remove('spinning'), 800);
-        }
-    }
+function exportCSV(){
+  const hdr=['#','Ism','Familya','Email','Tel','Kurs','Holat','Sana'];
+  const rows=applications.map((a,i)=>[i+1,a.ism,a.familya,a.email,a.tel,a.kurs,a.status,a.sana]);
+  const csv=[hdr,...rows].map(r=>r.map(v=>`"${v}"`).join(',')).join('\n');
+  const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a'); a.href=url; a.download='ilmmarkazi_arizalar.csv'; a.click();
+}
 
-    function showSec(id, btn) {
-        document.querySelectorAll('.s-section, .t-section').forEach(s => s.classList.add('hidden'));
-        document.getElementById(id).classList.remove('hidden');
-        document.querySelectorAll('.menu-item').forEach(m => m.classList.remove('active'));
-        btn.classList.add('active');
-        if(id === 'tUsers' || id === 'tStats') updateMonitor();
-    }
+document.getElementById('register-overlay').addEventListener('click',e=>{ if(e.target===e.currentTarget) closeRegister(); });
+document.getElementById('admin-login-overlay').addEventListener('click',e=>{ if(e.target===e.currentTarget) closeAdminLogin(); });
+document.getElementById('detail-overlay').addEventListener('click',e=>{ if(e.target===e.currentTarget) e.target.classList.remove('active'); });
 </script>
-</body>
-</html>
+<script src="./js/main.js"></script>
+</body></html>
