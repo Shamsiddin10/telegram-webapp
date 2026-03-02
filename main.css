@@ -1,0 +1,189 @@
+/* ======================
+   MOBILE FIRST ASOSIY QOIDALAR
+   ====================== */
+
+@media screen and (max-width: 1024px) {
+  nav {
+    padding: 1rem 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  nav ul {
+    display: none;               /* hozircha yashiramiz, keyin hamburger qilamiz */
+  }
+
+  .nav-right {
+    margin-left: auto;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+    padding-top: 5.5rem;
+    min-height: auto;
+    text-align: center;
+  }
+
+  .hero-left {
+    padding-right: 0;
+    order: 2;
+  }
+
+  .hero-right {
+    order: 1;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-right .stat-card {
+    margin-top: 0 !important;
+    padding: 1.5rem 1rem;
+  }
+
+  .stat-num {
+    font-size: 2.4rem;
+  }
+
+  h1 {
+    font-size: clamp(2.4rem, 8vw, 3.8rem);
+  }
+
+  .section {
+    padding: 4rem 1.5rem;
+  }
+
+  .courses-grid,
+  .testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .teachers-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.2rem;
+  }
+
+  .features-layout {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .cta-form,
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .form-input {
+    padding: 0.9rem 1.2rem;
+    font-size: 0.95rem;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+/* Kichik telefonlar (≤ 480–520px) */
+@media screen and (max-width: 520px) {
+  nav {
+    padding: 0.9rem 1.2rem;
+  }
+
+  .logo {
+    font-size: 1.4rem;
+  }
+
+  .nav-btn,
+  .admin-link {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .hero {
+    padding: 1.2rem;
+    padding-top: 5rem;
+  }
+
+  h1 {
+    font-size: clamp(2.1rem, 7.5vw, 3.2rem);
+  }
+
+  .hero-desc {
+    font-size: 0.98rem;
+  }
+
+  .btn-primary,
+  .btn-ghost {
+    padding: 0.9rem 1.8rem;
+    font-size: 0.95rem;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .hero-btns {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .hero-right {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .stat-card {
+    padding: 1.3rem;
+  }
+
+  .stat-num {
+    font-size: 2.8rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.8rem, 5.5vw, 2.6rem);
+  }
+
+  .course-card {
+    padding: 1.8rem 1.4rem;
+  }
+
+  .teacher-card {
+    padding: 1.5rem;
+  }
+
+  .teachers-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .testimonial-card {
+    padding: 1.8rem 1.4rem;
+  }
+}
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+@media (max-width: 1024px) {
+  .menu-toggle { display: block; }
+  nav ul {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    background: var(--dark2);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    padding: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  nav ul.active { display: flex; }
+  nav ul li { margin: 1rem 0; text-align: center; }
+  nav ul a { font-size: 1.1rem; }
+}
